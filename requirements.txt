@@ -1,0 +1,13 @@
+Django==1.7.7
+MySQL-python==1.2.5
+TwitterAPI==2.3.3
+amqp==1.4.6
+celery==3.1.17
+django-celery==3.1.16
+mysql==0.0.1
+oauthlib==0.7.2
+requests==2.5.3
+requests-oauthlib==0.4.2
+urllib3==1.10.2
+
+
