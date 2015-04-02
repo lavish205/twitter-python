@@ -5,11 +5,10 @@ __author__ = 'lavish'
 from .models import Tweet
 from TwitterAPI import TwitterAPI
 
+
 @task
 def get_tweet(keyword):
     api = TwitterAPI(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRET)
-
-    # r = api.request('statuses/filter', {'track': "haircut"})
     try:
         iterator = api.request('statuses/filter', {'track': "haircut"}).get_iterator()
         for item in iterator:
@@ -20,7 +19,6 @@ def get_tweet(keyword):
                 except Exception as e:
                     print(e.message)
 
-
             elif 'disconnect' in item:
                 event = item['disconnect']
                 if event['code'] in [2, 5, 6, 7]:
@@ -30,11 +28,11 @@ def get_tweet(keyword):
                     # temporary interruption, re-try request
                     break
 
-    except:
+    except Exception as e:
+        print e.message
         # if e.status_code < 500:
         # # something needs to be fixed before re-connecting
         #     raise
         # else:
         #     # temporary interruption, re-try request
         #     pass
-        pass
